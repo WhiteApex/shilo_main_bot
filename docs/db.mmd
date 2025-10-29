@@ -1,0 +1,69 @@
+```mermaid
+erDiagram
+    users {
+        int id PK
+        int telegram_id
+        string username
+        string first_name
+        string last_name
+        string phone
+        string email
+        string timezone
+        string start_payload
+        string utm_source
+        string utm_medium
+        string utm_campaign
+        string utm_content
+        string utm_term
+        datetime created_at
+        datetime updated_at
+    }
+    events {
+        int id PK
+        string title
+        string teaser
+        text description
+        datetime date
+        string image_id
+        int limit
+        int subscribed_count
+        int attended_count
+        string status
+        string report_media_id
+        text manager_note
+        datetime created_at
+        datetime updated_at
+    }
+    subscriptions {
+        int id PK
+        int event_id FK
+        int user_id FK
+        string full_name
+        string phone
+        string email
+        bool reminder_3d_sent
+        bool reminder_1d_sent
+        bool reminder_day_sent
+        bool attended
+        datetime created_at
+        datetime updated_at
+    }
+    logs {
+        int id PK
+        int admin_id
+        string action
+        text details
+        datetime created_at
+    }
+    metrics {
+        int id PK
+        string metric_type
+        int user_id
+        int event_id
+        text payload
+        datetime created_at
+    }
+
+    users ||--o{ subscriptions : ""
+    events ||--o{ subscriptions : ""
+```
